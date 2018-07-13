@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => {
-  return <div>Commment Box</div>;
+  return <div>Comment Box</div>;
 }
