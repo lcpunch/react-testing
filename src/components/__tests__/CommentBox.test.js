@@ -34,6 +34,9 @@ it('empties the text area when the input is submitted', () => {
   });
 
   component.update();
+
+  expect(component.find('textarea').prop('value')).toEqual('new comment');
+
   component.find('form').simulate('submit');
   component.update();
 
