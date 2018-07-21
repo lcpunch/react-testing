@@ -33,6 +33,7 @@ it('empties the text area when the input is submitted', () => {
     target: { value: 'new comment' }
   });
 
+  component.update();
   component.find('form').simulate('submit');
   component.update();
 
