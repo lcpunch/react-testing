@@ -17,28 +17,28 @@ it('has a text area and a button', () => {
   expect(component.find('button').length).toEqual(1);
 });
 
-it('has a text area that users can type in', () => {
-  component.find('textarea').simulate('change', {
-    target: { value: 'new comment' }
+describe('the text area', () => {
+
+  beforeEach(() => {
+    component.find('textarea').simulate('change', {
+      target: { value: 'new comment' }
+    });
+
+    component.update();
   });
 
-  component.update();
+  it('has a text area that users can type in', () => {
 
-  expect(component.find('textarea').prop('value')).toEqual('new comment');
-});
-
-it('empties the text area when the input is submitted', () => {
-
-  component.find('textarea').simulate('change', {
-    target: { value: 'new comment' }
+    expect(component.find('textarea').prop('value')).toEqual('new comment');
   });
 
-  component.update();
+  it('empties the text area when the input is submitted', () => {
 
-  expect(component.find('textarea').prop('value')).toEqual('new comment');
+    expect(component.find('textarea').prop('value')).toEqual('new comment');
 
-  component.find('form').simulate('submit');
-  component.update();
+    component.find('form').simulate('submit');
+    component.update();
 
-  expect(component.find('textarea').prop('value')).toEqual('');
+    expect(component.find('textarea').prop('value')).toEqual('');
+  });
 });
