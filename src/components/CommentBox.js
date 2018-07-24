@@ -34,4 +34,6 @@ class CommentBox extends Component {
   }
 }
 
+// first is to mapPropToState
+// second is mapDispatch
 export default connect(null, actions)(CommentBox);
