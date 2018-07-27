@@ -6,16 +6,21 @@ import Root from 'Root';
 let component;
 
 beforeEach(() => {
+
+  const initialState = {
+      comments: ['Comment 1', 'Comment 2']
+  };
+
   component = mount(
-    <Root>
+    <Root initialState = {initialState}>
       <CommentList />
     </Root>
   );
 });
 
 it('creates one LI per comment', () => {
-  
-  expect(component.find('li').length).toEqual(1);
+
+  expect(component.find('li').length).toEqual(2);
 });
 
 
