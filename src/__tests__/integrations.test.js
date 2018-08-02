@@ -1,18 +1,33 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import moxios from 'moxios';
 import Root from 'Root';
 import App from 'components/App';
 
-it('can fetch a list of comments and shows them', () => {
+beforeEach(() => {
+  moxios.install();
+  moxios.stubRequest('http://jsonplaceholder.typicode.com/comments', {
+    status: 200,
+    response: [{ name: 'Comment 1' }, { name: 'Comment 2' }]
+  });
+});
 
-  //Attempt to render the entire app
+afterEach(() => {
+  moxios.uninstall();
+});
+
+it('can fetch a list of comments and display them', (done) => {
   const component = mount(
     <Root>
       <App />
     </Root>
   );
 
-  // find the fetchComments button and click it
+  component.find('.fetch-comments').simulate('click');
 
-  // Expect to find a list of comments!
+  setTimeout(() => {
+    component.update();
+    expect(component.find('li').length).toEqual(2);
+    done();
+  }, 100);
 });
